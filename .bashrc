@@ -13,12 +13,25 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Enable Bash completion if possible (Linux)
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    source /usr/share/bash-completion/bash_completion
+  elif [[ -f /etc/bash_completion ]]; then
+    source /etc/bash_completion
   fi
+fi
+
+# Enable Homebrew Bash completion (macOS)
+if [[ -n "$HOMEBREW_PREFIX" && -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]]; then
+  source "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+fi
+
+# Enable Git completion
+if [[ -f /etc/bash_completion.d/git ]]; then
+  source /etc/bash_completion.d/git
+elif [[ -f /usr/share/bash-completion/completions/git ]]; then
+  source /usr/share/bash-completion/completions/git
 fi
 
 export NVM_DIR="$HOME/.nvm"
