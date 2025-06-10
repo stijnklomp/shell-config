@@ -17,3 +17,21 @@ alias dclocaldownup="$DOCKER_COMPOSE --profile local down && $DOCKER_COMPOSE --p
 alias dclocalupdown="$DOCKER_COMPOSElocaldownup"
 alias dclocaldown="$DOCKER_COMPOSE --profile local down"
 alias dclocalup="$DOCKER_COMPOSE --profile local up --build -d"
+
+alias gita="git add -A"
+alias gitc="git commit -m"
+alias gitm="git merge"
+gitr() {
+    if [ -z "$1" ]; then
+        echo "Usage: gitr <number>"
+    else
+        git rebase -ir HEAD~$1
+    fi
+}
+alias gitac="gita && gitc"
+alias gitd="git diff"
+alias gits="git status"
+alias gitp="git pull --all"
+alias gitds="git diff --staged"
+alias gitrb="git branch -r --no-merged"
+alias gitlb="git branch --no-merged"
