@@ -35,3 +35,11 @@ alias gitp="git pull --all"
 alias gitds="git diff --staged"
 alias gitrb="git branch -r --no-merged"
 alias gitlb="git branch --no-merged"
+
+jqt() {
+    if [ -z "$1" ]; then
+        echo "Usage: jqt <number>"
+    else
+        jq --arg limit "$1" '.. |= (if type == "string" then .[0:($limit|tonumber)] else . end)'
+    fi
+}

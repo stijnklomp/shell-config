@@ -73,3 +73,12 @@ alias gitrb "git branch -r --no-merged"
 alias gitlb "git branch --no-merged"
 alias gitbm "git merge -X theirs"
 alias gitbr "git rebase -X ours"
+
+# jq
+function jqt
+    if test -z "$argv[1]"
+        echo "Usage: jqt <number>"
+    else
+        jq --arg limit "$argv[1]" '.. |= (if type == "string" then .[0:($limit|tonumber)] else . end)'
+    end
+end
