@@ -75,10 +75,22 @@ alias gitbm "git merge -X theirs"
 alias gitbr "git rebase -X ours"
 
 # jq
+function jqe
+    tr -d '\\' | jq '.'
+end
+
 function jqt
     if test -z "$argv[1]"
         echo "Usage: jqt <number>"
     else
         jq --arg limit "$argv[1]" '.. |= (if type == "string" then .[0:($limit|tonumber)] else . end)'
+    end
+end
+
+function jqte
+    if test -z "$argv[1]"
+        echo "Usage: jqte <number>"
+    else
+        tr -d '\\' | jq --arg limit "$argv[1]" '.. |= (if type == "string" then .[0:($limit|tonumber)] else . end)'
     end
 end
