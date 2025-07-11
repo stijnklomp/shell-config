@@ -36,6 +36,7 @@ alias la "ls -la"
 alias vim "nvim"
 alias kc "kubectl"
 alias tf "terraform"
+alias docker-compose='docker compose'
 
 # AWS aliases
 alias awslogin "aws sso login --profile "
