@@ -68,7 +68,7 @@ end
 alias gitac "gita && gitc"
 alias gitd "git diff"
 alias gits "git status"
-alias gitp "git pull --all"
+alias gitpa "git pull --all"
 alias gitds "git diff --staged"
 alias gitrb "git branch -r --no-merged"
 alias gitlb "git branch --no-merged"
